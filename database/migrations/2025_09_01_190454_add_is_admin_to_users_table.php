@@ -11,11 +11,14 @@ return new class extends Migration
      */
     
 public function up()
-{
-    Schema::table('users', function (Blueprint $table) {
-        $table->boolean('is_admin')->default(false);
-    });
-}
+    {
+    if (!Schema::hasColumn('users', 'is_admin')) {
+        Schema::table('users', function (Blueprint $table) {
+            $table->boolean('is_admin')->default(false)->after('password');
+        });
+    }
+    }
+
     /**
      * Reverse the migrations.
      */

@@ -5,18 +5,18 @@
     <!-- Logo -->
     <div>
       <Link href="/">
-        <ApplicationLogo class="w-20 h-20 fill-current text-gray-500"></ApplicationLogo>
+        <ApplicationLogo class="w-20 h-20 fill-current text-gray-500" />
       </Link>
     </div>
 
     <!-- Form Container -->
     <div class="w-full sm:max-w-md mt-6 px-6 py-4 bg-white shadow-md overflow-hidden sm:rounded-lg">
-      <ValidationErrors class="mb-4"></ValidationErrors>
+      <ValidationErrors class="mb-4" :errors="form.errors" />
 
       <form @submit.prevent="submit">
         <!-- First Name -->
         <div>
-          <InputLabel for="first_name" value="First Name"></InputLabel>
+          <InputLabel for="first_name" value="First Name" />
           <TextInput
             id="first_name"
             type="text"
@@ -25,12 +25,12 @@
             required
             autofocus
             autocomplete="given-name"
-          ></TextInput>
+          />
         </div>
 
         <!-- Last Name -->
         <div class="mt-4">
-          <InputLabel for="last_name" value="Last Name"></InputLabel>
+          <InputLabel for="last_name" value="Last Name" />
           <TextInput
             id="last_name"
             type="text"
@@ -38,12 +38,12 @@
             v-model="form.last_name"
             required
             autocomplete="family-name"
-          ></TextInput>
+          />
         </div>
 
         <!-- Phone -->
         <div class="mt-4">
-          <InputLabel for="phone" value="Phone Number"></InputLabel>
+          <InputLabel for="phone" value="Phone Number" />
           <TextInput
             id="phone"
             type="tel"
@@ -52,26 +52,25 @@
             required
             placeholder="+256XXXXXXXXX"
             autocomplete="tel"
-          ></TextInput>
+          />
         </div>
 
-        <!-- Email Field (Required) -->
+        <!-- Email -->
         <div class="mt-4">
-        <label for="email" class="block text-sm font-medium text-gray-700">Email Address *</label>
-        <input
+          <InputLabel for="email" value="Email" />
+          <TextInput
             id="email"
             type="email"
-            class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
+            class="mt-1 block w-full"
             v-model="form.email"
             required
             autocomplete="email"
-            placeholder="your@email.com"
-        >
+          />
         </div>
 
         <!-- Password -->
         <div class="mt-4">
-          <InputLabel for="password" value="Password"></InputLabel>
+          <InputLabel for="password" value="Password" />
           <TextInput
             id="password"
             type="password"
@@ -79,12 +78,12 @@
             v-model="form.password"
             required
             autocomplete="new-password"
-          ></TextInput>
+          />
         </div>
 
         <!-- Confirm Password -->
         <div class="mt-4">
-          <InputLabel for="password_confirmation" value="Confirm Password"></InputLabel>
+          <InputLabel for="password_confirmation" value="Confirm Password" />
           <TextInput
             id="password_confirmation"
             type="password"
@@ -92,19 +91,19 @@
             v-model="form.password_confirmation"
             required
             autocomplete="new-password"
-          ></TextInput>
+          />
         </div>
 
         <!-- Referral Code (Optional) -->
         <div class="mt-4">
-          <InputLabel for="referral_code" value="Referral Code (Optional)"></InputLabel>
+          <InputLabel for="referral_code" value="Referral Code (Optional)" />
           <TextInput
             id="referral_code"
             type="text"
             class="mt-1 block w-full"
             v-model="form.referral_code"
             autocomplete="off"
-          ></TextInput>
+          />
         </div>
 
         <!-- Submit -->

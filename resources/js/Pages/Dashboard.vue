@@ -184,6 +184,8 @@
 
 <script setup>
 import { Head, Link } from '@inertiajs/vue3';
+import { ref } from 'vue';
+import AdManagement from '@/Components/AdManagement.vue'; // adjust path
 
 const props = defineProps({
   balance: Number,
@@ -192,7 +194,10 @@ const props = defineProps({
   available_ads: Number,
 });
 
-// Sample recent activities - replace with real data
+// State
+const activeTab = ref('dashboard');
+
+// Dummy recent activities
 const recentActivities = [
   {
     id: 1,
@@ -212,10 +217,11 @@ const recentActivities = [
     amount_class: 'text-red-600',
     icon: 'text-red-600',
     icon_bg: 'bg-red-100',
-    icon_path: 'M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z'
+    icon_path: 'M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 0 0118 0z'
   }
 ];
 </script>
+
 
 <style scoped>
 .bg-gradient-to-br {

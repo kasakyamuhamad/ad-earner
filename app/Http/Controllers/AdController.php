@@ -102,6 +102,13 @@ class AdController extends Controller
         'description' => 'Earned from viewing ad: ' . $ad->title
     ]);
 
+    //Fire event for real-time notification
+    event(new AdRewarded($adView));
+        return response()->json([
+            'success' => true,
+            'message' => 'Ad viewed successfully. You earned ' . $ad->reward_amount . ' coins.'
+        ]);
+
     // Get updated balance
     $newBalance = $user->fresh()->balance;
 

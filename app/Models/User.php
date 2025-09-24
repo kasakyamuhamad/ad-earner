@@ -70,6 +70,12 @@ class User extends Authenticatable
         return $this->adViews()->sum('earned_coins');
     }
 
+    public function isAdmin(): bool
+{
+    return (bool) $this->is_admin;
+}
+
+
 
 
 }

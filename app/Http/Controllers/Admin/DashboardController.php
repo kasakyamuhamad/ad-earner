@@ -7,6 +7,7 @@ use App\Models\User;
 use App\Models\Ad;
 use App\Models\Withdrawal;
 use Illuminate\Http\Request;
+use Inertia\Inertia;
 
 class DashboardController extends Controller
 {

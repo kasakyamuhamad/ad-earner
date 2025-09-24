@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Http\Controllers\Admin\Auth;
 
 use App\Http\Controllers\Controller;
@@ -8,25 +9,44 @@ use Inertia\Inertia;
 
 class LoginController extends Controller
 {
-    public function showLoginForm()
+    public function create()
     {
-        return Inertia::render('admin.auth.login');
+        return Inertia::render('Admin/Auth/Login');
     }
 
-    public function login(Request $request)
+    public function store(Request $request)
     {
-        $credentials = $request->only('email', 'password');
+        $credentials = $request->validate([
+            'email' => ['required', 'email'],
+            'password' => ['required'],
+        ]);
 
-        if (Auth::guard('web')->attempt($credentials)) {
+        if (Auth::attempt($credentials, $request->boolean('remember'))) {
+            $request->session()->regenerate();
+
+            // ✅ Check if user is actually admin
+            if (!Auth::user()->isAdmin()) {
+                Auth::logout();
+
+                return back()->withErrors([
+                    'email' => 'You are not authorized as admin.'
+                ]);
+            }
+
             return redirect()->route('admin.dashboard');
         }
 
-        return back()->withErrors(['email' => 'Invalid credentials']);
+        return back()->withErrors([
+            'email' => 'The provided credentials do not match our records.',
+        ]);
     }
 
-    public function logout(Request $request)
+    public function destroy(Request $request)
     {
         Auth::logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+
         return redirect()->route('admin.login');
     }
 }
